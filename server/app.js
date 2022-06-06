@@ -2,16 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const router = require('./routes/index.routes');
-
-const port = process.env.PORT || 8000;
-
-connection.connect((err) => {
-    if(err) {
-        console.error('error connecting :' + err.stack);
-    } else {
-        console.log("connected as id" + connection.threadId);
-    }
-})
+const db = require('./models');
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -23,10 +14,11 @@ app.get("/", (req,res) => {
     res.send("Welcome on the cities API");
 })
 
-
-
-app.listen(port, () => {
-    console.log(`Server is listenning on port ${port}`);
+db.sequelize.sync({ force: true }).then(() => {
+    app.listen(3001, () => {
+        console.log(`Server is listenning on port 3001`);
+    })
 })
+
 
 module.exports = app;

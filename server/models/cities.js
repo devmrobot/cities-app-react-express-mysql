@@ -1,9 +1,26 @@
-import { Sequelize, Model, DataTypes } from 'sequelize';
+module.exports = (sequelize, DataTypes) => {
 
-const sequelize = new Sequelize('sqlite::memory:');
-const City = sequelize.define('City', {
-    codePostal: DataTypes.NUMBER,
-    codeCommune: DataTypes.DATE,
-    nomCommune: DataTypes.STRING,
-    libelleAcheminement: DataTypes.STRING,
-});
+    const City = sequelize.define('cities', {
+        codePostal: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+          },
+        codeCommune: {
+            type: DataTypes.STRING,
+            allowNull: false
+          },
+        nomCommune: {
+            type: DataTypes.STRING,
+            allowNull: false
+          },
+        libelleAcheminement: {
+            type: DataTypes.STRING,
+            allowNull: false
+          },
+    });
+
+    return City;
+    
+}
+
+
