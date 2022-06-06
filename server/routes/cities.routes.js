@@ -1,13 +1,6 @@
 const router = require("express").Router();
+const cities = require("../controllers/cities.controller.js");
 
-// router.get('/', (req, res) => {
-//     connection.query("SELECT * FROM user", (err, result) => {
-//         if(err) {
-//             res.status(500).send("Error retrieving users from database");
-//         } else {
-//             res.json(result);
-//         }
-//     })
-// });
+router.get("/cities", cities.findAll);
 
 module.exports = router;

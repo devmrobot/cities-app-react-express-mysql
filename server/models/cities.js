@@ -1,26 +1,27 @@
 module.exports = (sequelize, DataTypes) => {
 
     const City = sequelize.define('cities', {
-        codePostal: {
+        id: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            autoIncrement: true,
+            primaryKey: true
+        },
+        codePostal: {
+            type: DataTypes.INTEGER
           },
         codeCommune: {
-            type: DataTypes.STRING,
-            allowNull: false
+            type: DataTypes.STRING
           },
         nomCommune: {
-            type: DataTypes.STRING,
-            allowNull: false
+            type: DataTypes.STRING
           },
         libelleAcheminement: {
-            type: DataTypes.STRING,
-            allowNull: false
+            type: DataTypes.STRING
           },
+    }, {
+        timestamps: false
     });
-
     return City;
-    
 }
 
 
