@@ -6,12 +6,17 @@ const City = db.cities;
 exports.getAll = async (req, res) => {
     try {
         const city = req.query.city;
-        const condition = city ? { nomCommune: { [Op.like]: `%${city}%` } } : null;
         const cities = await City.findAll(
         {
-            where: condition,
+            where: {
+                [Op.or]: [
+                    {nomCommune: { [Op.like]: `%${city}%` }},
+                    {codePostal:  { [Op.like]: `%${city}%` }}
+                ]
+            },
             limit: 100 
-        });
+        }
+        );
         res.send(cities);
     } catch(err) {
         res.status(500).send({
