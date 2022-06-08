@@ -7,11 +7,15 @@ function App() {
   const [results, setResults] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/api/cities?city=${searchValue}`)
+    axios
+    .get(`http://localhost:3001/api/cities?city=${searchValue}`)
     .then((res) => {
       setResults(res.data);
     })
   }, [searchValue])
+
+  const dataMetropole = results.metropole;
+  const dataOutremer = results.outremer;
 
   const handleChange = (e) => {
     setSearchValue(e.target.value);
@@ -31,26 +35,40 @@ function App() {
           </div>
       </div>
       <div className="flex justify-center mt-20">
-        <div className="w-1/2 text-lg font-extrabold">
+        <div className="w-1/2 text-lg">
+        <p className='text-xl font-bold'>
           Villes de métropole
+        </p>
           <ul className='flex flex-col'>
-          {
-            results &&
-            results.map((city, key) =>
-              <li id={key}>
-                {city.nomCommune}
-              </li>
-            )
-          }
+            {
+              dataMetropole &&
+              dataMetropole.map((city, key) =>
+                <li id={key}>
+                  {city.nomCommune} {city.codePostal}
+                </li>
+              )
+            }
           </ul>
-
         </div>
-        <div className="text-lg font-extrabold">
+        <div className="text-lg">
+        <p className='text-xl font-bold'>
           Villes d'outre-mer
+        </p>
+          <ul className='flex flex-col'>
+            {
+              dataOutremer &&
+              dataOutremer.map((city, key) =>
+                <li id={key}>
+                  {city.nomCommune} {city.codePostal}
+                </li>
+              )
+            }
+          </ul>
         </div>
       </div>
     </div>
-);
+  );
 }
+
 
 export default App;
