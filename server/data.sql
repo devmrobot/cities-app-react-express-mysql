@@ -1,3 +1,17 @@
+CREATE DATABASE IF NOT EXISTS citiesdb;
+
+USE citiesdb;
+
+DROP TABLE IF EXISTS cities;
+
+CREATE TABLE cities(
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  codePostal INT,
+  codeCommune VARCHAR(45),
+  nomCommune VARCHAR(45),
+  libelleAcheminement VARCHAR(45)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 INSERT INTO cities (codePostal, codeCommune, nomCommune, libelleAcheminement) VALUES
 (10200,'10002','Ailleville','AILLEVILLE'),
 (10160,'10003','Aix-Villemaur-Pâlis','AIX-VILLEMAUR-PALIS'),

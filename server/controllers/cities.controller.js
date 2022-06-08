@@ -5,8 +5,8 @@ const City = db.cities;
 
 exports.getAll = async (req, res) => {
     try {
-        const name = req.query.name;
-        const condition = name ? { nomCommune: { [Op.like]: `%${name}%` } } : null;
+        const city = req.query.city;
+        const condition = city ? { nomCommune: { [Op.like]: `%${city}%` } } : null;
         const cities = await City.findAll(
         {
             where: condition,
